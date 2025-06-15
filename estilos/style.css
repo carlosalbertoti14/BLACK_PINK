@@ -1,13 +1,29 @@
 
 :root {
-    --cor0: #9c749c;
-    --cor1: #be22be;
-    --cor2: #9b056e;
-    --cor3: #960b2e;
-    --cor4: #490644;
-    --cor5: #0e0d0d;
-    --cor6: #eb8ecf;
-    --cor7: rgb(240, 207, 233);
+    --cor0: #fdfdfd;
+    --cor1: #ffbbf7;
+    --cor2: #b382ad;
+    --cor3: #fc79ec;
+    --cor5: #fa36e3;
+    --cor4: #b147a4;
+    --cor7: #ff00e1;
+    --cor6: #a02391;
+    --cor8: #8a007a;
+    --cor9: #fd0202;
+    --cor10: #000000;
+
+
+    --Tcor0: #fdfdfd59;
+    --Tcor1: #ffbbf752;
+    --Tcor2: #b382ad52;
+    --Tcor3: #fc79ed49;
+    --Tcor5: #fa36e357;
+    --Tcor4: #b147a54d;
+    --Tcor7: #ff00e14d;
+    --Tcor6: #a023914b;
+    --Tcor8: #8a007a50;
+    --Tcor9: #fd020252;
+    --Tcor10: #0000009d;
 
     --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
     --fonte-strong: Anton, Boldonse, Rowdies, Alfa Slab One, Archivo Black,;
@@ -111,17 +127,17 @@ h5{
     padding-top: 20px;
 }
 
-.coluna li a {
+.coluna li a { /* texto interno */
     color: white;
 
 }
 
-.textoalbum {
+.textoalbum { /* texto título do album */
     font-size: 1.5em;
-    color: var(--cor0);
+    color: var(--cor10);
     font-weight: bolder;
     text-align: center;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.466);
+    text-shadow: 1px 1px 3px rgba(255, 254, 254, 0.301);
 
 }   
 
@@ -223,7 +239,7 @@ div#ahyeon span a{color: rgb(26, 26, 238)}
 
 h2#titulocarrocel {
     /* background-color: antiquewhite; */
-    color: var(--cor6);
+    color: var(--cor1);
     /* text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.644); */
 }
 
@@ -609,7 +625,7 @@ img#substitute-image {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('../midia/blackpink_HTML_BG.jpg');
+    background-image: url('../midia/blackpink_HTML_BG_Transp.png');
     background-size: 100px 100px;
     height: 100vh;
     width: 100%;
@@ -645,7 +661,7 @@ header > h1 {
 /*********************** configuração do HOME ***********************/
 
 article {
-    background-color:  var(--cor7);
+    background-color:  var(--Tcor10);
     padding: 10px;
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.534);
@@ -653,13 +669,14 @@ article {
 
     div#artigo{  
     padding: 10px;
-    background-color: var(--cor7);
+    background-color: var(--cor10);
     border-radius: 10px;
     box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.397);
 }
 
 div#artigo > p{
     line-height: 1.5;
+    color: var(--cor2);
     
     
     
@@ -668,12 +685,12 @@ div#artigo > p{
 div#artigo > h2 {
     
     text-align: center;
-    color: black;
+    color: var(--cor2);
     font-weight: bolder;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.418);
 }
 
-section.normal{
+section.artperg{
     background-color: rgb(124, 12, 124);
     color: white;
     padding: 10px;
@@ -682,6 +699,9 @@ section.normal{
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.534);
 }
 
+.artresp {
+    color: var(--cor2);
+}
 
 picture.poster {
     width: 300px; /* Defina a largura desejada */
@@ -728,7 +748,7 @@ div#menu  > nav {
 }
 
 div#menu > nav a {
-    background-color:var(--cor2);
+    background-color:var(--cor7);
     color: white;
     padding: 10px;
     /* width: auto; */ /* Mantém o ajuste da largura */
@@ -826,7 +846,7 @@ div#menu  > nav a:hover {
     font-size: 25px; /* Tamanho do ícone */
     cursor: pointer;
     user-select: none;
-    background-color: var(--cor2);
+    background-color: var(--cor7);
     color: #333;
     padding: 5px 10px;
     border-radius: 5px;
@@ -918,11 +938,11 @@ div#centro{
 
 
 main {
-    background-color: rgba(248, 245, 245, 0.329);
+    background-color: var(--Tcor10);
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 2px 3px 3px rgba(255, 255, 255, 0.397);
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.397);
     max-width: 800px;
     display: flex; /* Adiciona flexbox ao main */
     flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
@@ -931,9 +951,6 @@ main {
     gap: 10px; /* Adiciona espaçamento entre os itens */
 }
 
-/* main.homemain {
-    background-color: rgba(142, 21, 212, 0.37);
-} */
 
 
 
@@ -976,10 +993,20 @@ ul, ol {
 }
 
 
+
+main.homemain {
+    background-color: var(--Tcor10);
+}
+
+.ARTnormal{
+    background-color: var(--cor10);
+
+}
+
 .coluna li {
     margin: 5px 0; /* Adiciona espaçamento vertical entre os itens */
-    background-color: var(--cor2); /* Cor de fundo para destacar */
-    color: white; /* Cor do texto */
+    background-color: var(--cor10); /* Cor de fundo para destacar */
+    color: var(--cor3); /* Cor do texto */
     padding: 10px; /* Espaçamento interno */
     border-radius: 5px; /* Borda arredondada */
     text-align: left; /* Centraliza o texto */
@@ -1001,10 +1028,10 @@ ul, ol {
 
 
 .coluna > li:hover {
-    background-color: white;
-    color: var(--cor2);
+    background-color:var(--cor3);
+    color: var(--cor10);
     transition: 0.5s;
-    text-shadow: 1px 1px 2px rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px rgb(236, 65, 171);
 }
 
 li  a {
@@ -1068,8 +1095,8 @@ div > h2{
 /*     text-shadow: 0px 0px 3px rgb(0, 0, 0); */
     font-weight: bolder;
    /*  color: var(--cor2); */
-   color: var(--cor3);
-    
+   color: var(--cor6);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.452);
 }
 
 
@@ -1122,23 +1149,7 @@ section#perfil div{
 
 
 
-div#ahyeon a{color: #a82f9e;}
-div#ahyeon a:hover{color: var(--cor1)}
 
-div#ahyeon, div#asa, div#chiquita, div#pharita, div#rami, div#rora, div#ruka{
-    background-color: rgba(0, 0, 0, 0.459);
-    position: absolute; /* Adicionado */
-    border-radius: 10px;
-    bottom: 10px; /* Alinha a parte inferior com a parte inferior do pai (perfil) */
-    left: 50%; /* Move o início da div para o centro horizontal do pai */
-    transform: translateX(-50%); /* Desloca a div metade de sua própria largura para a esquerda, centralizando-a */
-    width: 95%; /* Ajuste a largura conforme necessário */
-    /* Outros estilos como background-color, padding, etc. */
-    text-align: left;
-   /*  transform: translateX(-50%); */
-    /* z-index: 5; */
-
-}
 
 
 /**********************FIM CONFIG LISTA************************************/

@@ -1,6 +1,4 @@
-
-//******INÍCIO DA CONFIGURAÇÃO DO MOUSE MÁGICO****
-
+//******INICIOM DA CONFIGURAÇÃO DO MAUSE MAGICO****
 // ============================
 // CLIQUE MÁGICO (.GIF + SOM)
 // ============================
@@ -26,8 +24,8 @@ document.addEventListener('click', function (event) {
     // Define um 'zIndex' alto para garantir que o GIF apareça acima de outros elementos.
     gifElement.style.pointerEvents = 'none';
     // Impede que o GIF interaja com eventos do mouse (cliques, etc.).
-    gifElement.style.width = '150px';   // Define a largura do GIF no clique.
-    gifElement.style.height = '150px';  // Define a altura do GIF no clique.
+    gifElement.style.width = '150px';   // Define a largura do GIF no clique para 50 pixels.
+    gifElement.style.height = '150px';  // Define a altura do GIF no clique para 50 pixels.
 
     document.body.appendChild(gifElement);
     // Adiciona o elemento de imagem (o GIF) como um filho do elemento `<body>` do documento.
@@ -45,7 +43,7 @@ document.addEventListener('click', function (event) {
         // Define a posição 'top' do GIF para centralizá-lo verticalmente no clique.
 
         setTimeout(() => gifElement.remove(), 800); //tempo em que o gif de clique é executado
-        // Define um temporizador para remover o elemento GIF do DOM após 800 milissegundos.
+        // Define um temporizador para remover o elemento GIF do DOM após 1200 milissegundos (1.2 segundos).
     };
 
     gifElement.onerror = function () {
@@ -54,13 +52,12 @@ document.addEventListener('click', function (event) {
         // Exibe uma mensagem de erro no console com o caminho do GIF que falhou ao carregar.
     };
 
-    // Verifica se a variável `somCliqueMuted` existe e é falsa (não está mutado)
-    // Se a variável não for definida em outro lugar, considere inicializá-la como `false` no topo do script.
-    if (typeof somCliqueMuted === 'undefined' || !somCliqueMuted) {
+    if (!somCliqueMuted) { // Verifica se o som de clique não está mudo
+        // Verifica se a variável `somCliqueMuted` é falsa (ou indefinida), indicando que o som não está mudo.
         const somClique = new Audio("sons/CLIQUE.mp3");
         // Cria um novo objeto de áudio com o arquivo de som do clique.
         somClique.play().catch((e) => {
-            // Tenta reproduzir o som do clique e captura qualquer erro que possa ocorrer.
+            // Tenta reproduzir o som do clique e captura qualquer erro que possa ocorrer durante a reprodução.
             console.warn("Erro ao tocar som de clique:", e);
             // Exibe um aviso no console se houver um erro ao tocar o som do clique.
         });
@@ -74,9 +71,8 @@ let ultimoSomArrastarDesktop = null;
 // Variável para armazenar o último objeto de áudio de arrastar tocado no desktop.
 let podeTocarSomArrastarDesktop = false;
 // Variável de controle para permitir ou impedir a reprodução do som de arrastar no desktop.
-// CORREÇÃO: Use clientX e clientY para detectar movimento real do cursor na tela
-let ultimaPosicaoDesktopX = 0; // Armazena a última posição X do mouse na viewport
-let ultimaPosicaoDesktopY = 0; // Armazena a última posição Y do mouse na viewport
+let ultimaPosicaoDesktop = 0;
+// Variável para armazenar a última posição do mouse para o efeito de arrastar no desktop.
 const distanciaMinimaDesktop = 30; // Ajuste conforme necessário
 // Define a distância mínima que o mouse deve se mover para ativar o efeito de arrastar no desktop.
 
@@ -91,23 +87,25 @@ function criarTrilhaMagicaDesktop(x, y) {
     // Cria um novo elemento de imagem para o GIF.
     gifElement.src = caminhoGif;
     // Define o 'src' do GIF.
-    gifElement.style.position = 'fixed'; // Alterado para 'fixed' para que o GIF siga o mouse na viewport
-    // Define a posição como 'fixed'.
+    gifElement.style.position = 'absolute';
+    // Define a posição como 'absolute'.
     gifElement.style.zIndex = '9999';
     // Garante que o GIF fique acima de outros elementos.
     gifElement.style.pointerEvents = 'none';
     // Impede a interação do GIF com eventos do mouse.
-    gifElement.style.width = '90px';    // Define a largura do GIF ao arrastar (desktop).
-    gifElement.style.height = '90px';   // Define a altura do GIF ao arrastar (desktop).
-    
+    gifElement.style.width = '90px';   // Define a largura do GIF ao arrastar (desktop) para 50 pixels.
+    gifElement.style.height = '90px';  // Define a altura do GIF ao arrastar (desktop) para 50 pixels.
+    // Define a largura do GIF.
+    // Define a altura do GIF.
     document.body.appendChild(gifElement);
     // Adiciona o GIF ao corpo do documento.
 
-    // Verifica se a variável `somArrastarMuted` existe e é falsa (não está mutado)
     if (podeTocarSomArrastarDesktop && (!ultimoSomArrastarDesktop || ultimoSomArrastarDesktop.ended)) {
-        if (typeof somArrastarMuted === 'undefined' || !somArrastarMuted) {
-            // Cria um novo objeto de áudio para o som de arrastar.
+        // Verifica se pode tocar o som de arrastar e se nenhum som está tocando ou o último terminou.
+        if (!somArrastarMuted) { // Verifica se o som de arrastar não está mudo
+            // Verifica se a variável `somArrastarMuted` é falsa.
             ultimoSomArrastarDesktop = new Audio("sons/ARRASTAR.mp3");
+            // Cria um novo objeto de áudio para o som de arrastar.
             ultimoSomArrastarDesktop.play().catch((e) => {
                 // Tenta reproduzir o som e captura erros.
                 console.warn("Erro ao tocar som de arrastar (desktop):", e);
@@ -140,20 +138,15 @@ function criarTrilhaMagicaDesktop(x, y) {
 if (!('ontouchstart' in window)) {
     // Verifica se o dispositivo NÃO suporta eventos de toque (indicando que é um desktop).
     document.addEventListener('mousemove', function (e) {
-        // CORREÇÃO: Usar clientX e clientY para movimento real do mouse
-        const currentX = e.clientX;
-        const currentY = e.clientY;
-
-        // Calcula a distância euclidiana para um movimento mais preciso
-        const distanceMoved = Math.sqrt(
-            Math.pow(currentX - ultimaPosicaoDesktopX, 2) +
-            Math.pow(currentY - ultimaPosicaoDesktopY, 2)
-        );
-
-        if (distanceMoved > distanciaMinimaDesktop) {
-            ultimaPosicaoDesktopX = currentX; // Atualiza a última posição X na viewport
-            ultimaPosicaoDesktopY = currentY; // Atualiza a última posição Y na viewport
-            criarTrilhaMagicaDesktop(currentX, currentY); // Passa clientX e clientY para o posicionamento
+        // Adiciona um ouvinte de evento para o movimento do mouse.
+        const atual = e.pageY + e.pageX;
+        // Calcula uma soma das coordenadas Y e X para detectar movimento.
+        if (Math.abs(atual - ultimaPosicaoDesktop) > distanciaMinimaDesktop) {
+            // Verifica se a distância movida desde a última posição é maior que a mínima definida.
+            ultimaPosicaoDesktop = atual;
+            // Atualiza a última posição do mouse.
+            criarTrilhaMagicaDesktop(e.pageX, e.pageY);
+            // Chama a função para criar a trilha mágica na posição atual do mouse.
         }
     });
 }
@@ -163,18 +156,22 @@ if (!('ontouchstart' in window)) {
 // (com GIFs fixos que acompanham o conteúdo da tela)
 // ============================
 
+// ** Código para Mobile **
+
 let ultimoSomArrastarMobile = null;
 // Variável para armazenar o último objeto de áudio de arrastar tocado no mobile.
 let podeTocarSomArrastarMobile = false;
 // Variável de controle para permitir ou impedir a reprodução do som de arrastar no mobile.
 let primeiroToque = null;
 // Variável para armazenar as coordenadas do primeiro toque para calcular o movimento.
-const distanciaMinimaMobile = 30; // Distância mínima para ativar o efeito
+const distanciaMinimaMobile = 30; // Distância mínima para ativar o efeito - Renomeei para clareza
 // Define a distância mínima que o dedo deve se mover para ativar o efeito de arrastar no mobile.
-let podeCriarGifMobile = true; // Variável de controle para limitar a criação de GIFs no mobile.
-const intervaloMinimoGifMobile = 50; // Intervalo mínimo em milissegundos
+let podeCriarGifMobile = true; // Renomeei para clareza
+// Variável de controle para limitar a criação de GIFs no mobile.
+const intervaloMinimoGifMobile = 50; // Intervalo mínimo em milissegundos - Renomeei para clareza
 // Define o intervalo mínimo entre a criação de GIFs no mobile para otimizar o desempenho.
-let ultimoTempoCriacaoGifMobile = 0; // Variável para armazenar o timestamp da última vez que um GIF foi criado no mobile.
+let ultimoTempoCriacaoGifMobile = 0; // Renomeei para clareza
+// Variável para armazenar o timestamp da última vez que um GIF foi criado no mobile.
 
 // Ativa o som de arrastar após qualquer toque e guarda a posição inicial
 document.addEventListener('touchstart', (e) => {
@@ -221,18 +218,21 @@ function criarTrilhaMagicaMobile(clientX, clientY) {
     // Garante que o GIF fique acima de outros elementos.
     gifElement.style.pointerEvents = 'none';
     // Impede a interação do GIF com eventos de toque.
-    gifElement.style.width = '80px';    // Define a largura do GIF ao arrastar (mobile).
-    gifElement.style.height = '80px';   // Define a altura do GIF ao arrastar (mobile).
+    gifElement.style.width = '80px';   // Define a largura do GIF ao arrastar (mobile) para 50 pixels.
+    gifElement.style.height = '80px';  // Define a altura do GIF ao arrastar (mobile) para 50 pixels.
+    // Define a largura do GIF.
+    // Define a altura do GIF.
 
     document.body.appendChild(gifElement);
     // Adiciona o GIF ao corpo do documento.
 
     // Toca o som apenas se permitido e se o som anterior terminou
-    // Verifica se a variável `somArrastarMuted` existe e é falsa (não está mutado)
     if (podeTocarSomArrastarMobile && (!ultimoSomArrastarMobile || ultimoSomArrastarMobile.ended)) {
-        if (typeof somArrastarMuted === 'undefined' || !somArrastarMuted) {
-            // Cria um novo objeto de áudio para o som de arrastar.
+        // Verifica se pode tocar o som e se nenhum som está tocando ou o último terminou.
+        if (!somArrastarMuted) { // Verifica se o som de arrastar não está mudo
+            // Verifica se a variável `somArrastarMuted` é falsa.
             ultimoSomArrastarMobile = new Audio("sons/ARRASTAR.mp3");
+            // Cria um novo objeto de áudio para o som de arrastar.
             ultimoSomArrastarMobile.play().catch((e) => {
                 // Tenta reproduzir o som e captura erros.
                 console.warn("Erro ao tocar som de arrastar (mobile):", e);
@@ -299,6 +299,6 @@ document.addEventListener('touchcancel', () => {
     // Reseta a variável que armazena a posição inicial do toque.
 });
 
-//******FIM DA CONFIGURAÇÃO DO MOUSE MÁGICO (MOBILE)****
+//******FIM DA CONFIGURAÇÃO DO MAUSE MAGICO (MOBILE)****
 
-//******FIM DA CONFIGURAÇÃO DO MOUSE MÁGICO***
+//******FIM DA CONFIGURAÇÃO DO MAUSE MAGICO***

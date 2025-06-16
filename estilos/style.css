@@ -1113,15 +1113,24 @@ p.brasil{
     
 }
 
- a.insta {
-    display: block;
-    color: #a82f9e;
-    /* width: 100%; */
-    text-align: right;
-   
-    font-weight: bolder;
+
+/* configuração de redes sociais  */
+
+.redes-sociais { /* Aplicamos o estilo ao parágrafo pai */
+  text-align: right;
+  /* Você pode adicionar um espaçamento entre os links se quiser, por exemplo: */
+  /* gap: 10px; - para usar com flexbox, veja a opção 2 */
 }
 
+a.rsocial {
+  /* Remova 'float: left;', 'display: block;' e 'text-align: right;' daqui */
+  /* Eles estão causando o problema e não são necessários para este alinhamento */
+  color: #a82f9e;
+  font-weight: bolder;
+  margin-left: 10px; /* Adiciona um espaço entre os links, empurrando o da esquerda para a direita */
+}
+
+/* fim configuração de redes sociais  */
 
 section#perfil div{
     display: block;

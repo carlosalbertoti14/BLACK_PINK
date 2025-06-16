@@ -1003,7 +1003,7 @@ main.homemain {
 
 }
 
-.coluna li {
+.coluna li { /* lista primaria */
     margin: 5px 0; /* Adiciona espaçamento vertical entre os itens */
     background-color: var(--cor10); /* Cor de fundo para destacar */
     color: var(--cor3); /* Cor do texto */
@@ -1014,12 +1014,20 @@ main.homemain {
    
 }
 
-.coluna li > ul > li {
-    background-color: var(--cor3);
+.coluna > li:hover {  /* lista primaria */
+    background-color:var(--cor3);
+    color: var(--cor10);
+    transition: 0.5s;
+    text-shadow: 1px 1px 2px rgb(236, 65, 171);
+}
+
+
+.coluna li > ul > li { /* lista secundaria expandida */
+    background-color: var(--cor6);
 
 }
 
-.coluna li > ul > li:hover {
+.coluna li > ul > li:hover { /* lista secundaria expandida */
     background-color: black;
     color: white;
     transition: 0.5s;
@@ -1027,12 +1035,6 @@ main.homemain {
 }
 
 
-.coluna > li:hover {
-    background-color:var(--cor3);
-    color: var(--cor10);
-    transition: 0.5s;
-    text-shadow: 1px 1px 2px rgb(236, 65, 171);
-}
 
 li  a {
     text-decoration: none;

@@ -12,10 +12,12 @@ blackpink-album-squareone.jpg
 blackpink-album-squaretwo_3.jpg
 blackpink-album-squareup.jpg
 blackpink-album-thealbum.jpg
+BLACKPINK_ALBUM_LIST.rtf
 blackpink_head_1.jpg
 blackpink_head_2.jpg
 blackpink_head_3.jpg
 blackpink_HTML_BG.jpg
+blackpink_HTML_BG_Transp.png
 Blackpink_logo.svg.png
 blackpink_PERFIL_BG_Jennie.jpg
 blackpink_PERFIL_BG_Jisoo.jpg
@@ -29,6 +31,7 @@ carrocel_Boombayah.jpg
 carrocel_DDU-DU DDU-DU.jpg
 carrocel_How You Like That.jpg
 carrocel_Kill This Love.jpg
+carrocel_scientist.jpg
 clique_magico.gif
 clique_magico2.gif
 coroa.jpg
@@ -43,6 +46,13 @@ niver_Jisoo3jan.png
 niver_Lisa27Mar.png
 niver_Rose11fev.png
 Nomes_dos_Arquivos.txt
+ROLLING_STONE_logo.jpg
+SOLO-album-JENNIE_RUBY.jpg
+SOLO-album-JISOO_AMORTAGE.jpg
+SOLO-album-JISOO_ME.jpg
+SOLO-album-LISA_ALTEREGO.jpg
+SOLO-album-LISA_LALISA.jpg
+SOLO-album-ROSê_ROSê.jpg
 Teen_Vogue_logo.png
 twice_POSTER.jpg
 YG_FAMILY_logo.svg.png
